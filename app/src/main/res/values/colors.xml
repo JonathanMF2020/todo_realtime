@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FFBB86FC</color>
-    <color name="secondary">#FFBBe6FC</color>
-    <color name="otheer">#FFBBc6FC</color>
+    <color name="primary">#fa931e</color>
+    <color name="secondary">#2ac380</color>
+    <color name="otheer">#2ac380</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

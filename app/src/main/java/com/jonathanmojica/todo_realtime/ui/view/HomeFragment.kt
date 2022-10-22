@@ -1,14 +1,20 @@
 package com.jonathanmojica.todo_realtime.ui.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jonathanmojica.todo_realtime.R
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.jonathanmojica.todo_realtime.databinding.FragmentHomeBinding
+import com.jonathanmojica.todo_realtime.model.Categoria
 import com.jonathanmojica.todo_realtime.model.Postick
 import com.jonathanmojica.todo_realtime.model.Subtarea
 import com.jonathanmojica.todo_realtime.ui.adapter.PostickAdapter
@@ -17,15 +23,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapter: PostickAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val array = arrayListOf(
-        Postick(Color.RED,"Clases", arrayListOf(), arrayListOf(
-            Subtarea("Hacer tarea",true),
-            Subtarea("Hacer tarea 2",true),
-        )),
-        Postick(Color.BLACK,"Trabajo", arrayListOf(), arrayListOf()),
-        Postick(Color.BLUE,"Deportes", arrayListOf(), arrayListOf()),
-    )
-
+    private val marksRef = FirebaseDatabase.getInstance().getReference("todos")
+    private var array:ArrayList<Postick> = arrayListOf()
 
 
     override fun onCreateView(
@@ -34,14 +33,39 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setRecycler()
+        listener()
         return binding.root
+    }
+
+    private fun listener(){
+        marksRef.addChildEventListener(object : ChildEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {}
+            override fun onChildMoved(dataSnapshot: DataSnapshot, previousName: String?) {}
+            override fun onChildChanged(dataSnapshot: DataSnapshot, previousName: String?) {}
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                var ch = dataSnapshot.getValue(Postick::class.java)
+                array.remove(ch)
+                adapter.arrayList = array
+                adapter.notifyDataSetChanged()
+
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onChildAdded(dataSnapshot: DataSnapshot, p1: String?) {
+                var ch = dataSnapshot.getValue(Postick::class.java)
+                array.add(ch!!)
+                adapter.arrayList = array
+                adapter.notifyDataSetChanged()
+
+            }
+        })
     }
 
     private fun setRecycler() {
         adapter = PostickAdapter(array) {
 
         }
-
         binding.recyclerPostick.adapter = adapter
         binding.recyclerPostick.layoutManager = LinearLayoutManager(activity)
     }

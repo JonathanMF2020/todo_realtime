@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/drawable/background_border_cicle.xml" value="0.184" />
         <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/alert_dialog_add.xml" value="0.1" />
         <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/item_postick.xml" value="0.5" />
+        <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/item_category.xml" value="0.33" />
+        <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/item_postick.xml" value="0.22" />
         <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/item_subtask.xml" value="0.14667781027998328" />
         <entry key="..\:/Users/Jonathan/StudioProjects/todo_realtime/app/src/main/res/layout/subtask_fragment.xml" value="0.14667781027998328" />
       </map>

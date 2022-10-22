@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdk 32
@@ -58,8 +61,6 @@ dependencies {
     def rxAndroidVersion = '2.1.1'
     def retrofitVersion = '2.9.0'
     def retrofitRX = '2.4.0'
-    def core_version  = '1.6.0'
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -79,4 +80,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitRX"
+    implementation "com.google.firebase:firebase-database:20.1.0"
+
+
 }
