@@ -5,32 +5,46 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 import com.jonathanmojica.todo_realtime.databinding.ItemPostickBinding
-import com.jonathanmojica.todo_realtime.model.Categoria
-import com.jonathanmojica.todo_realtime.model.Postick
+import com.jonathanmojica.todo_realtime.model.PostickData
 import com.jonathanmojica.todo_realtime.model.Subtarea
 
-class PostickAdapter(var arrayList: ArrayList<Postick> = arrayListOf(),var listener: (Postick) -> Unit): RecyclerView.Adapter<PostickAdapter.PostickHolder>()
+class PostickAdapter(var arrayList: ArrayList<PostickData> = arrayListOf(), var listener: (PostickData) -> Unit): RecyclerView.Adapter<PostickAdapter.PostickHolder>()
 {
 
     class PostickHolder(val postickBinding: ItemPostickBinding) : RecyclerView.ViewHolder(postickBinding.root) {
         private lateinit var adapter: SubtaskAdapter
-        private lateinit var adapterCategory: CategoryAdapter
+        private val marksRef = FirebaseDatabase.getInstance().getReference("todos")
 
-        fun bind(item: Postick,context: Context) {
-            adapter = SubtaskAdapter(item.subtareas as ArrayList<Subtarea>)
-            adapterCategory = CategoryAdapter(item.categorias as ArrayList<Categoria>)
+        fun bind(item: PostickData,context: Context) {
+            adapter = SubtaskAdapter(item)
             postickBinding.recyclerSubTask.adapter = adapter
             postickBinding.recyclerSubTask.layoutManager = LinearLayoutManager(context)
-            postickBinding.recyclerCategory.adapter = adapterCategory
-            postickBinding.recyclerCategory.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
-            postickBinding.postick = item
-            if(item.subtareas.isEmpty())
+            postickBinding.imgAdd.setOnClickListener{
+                postickBinding.editTextTextPersonName.visibility = View.VISIBLE
+                postickBinding.editTextTextPersonName.requestFocus()
+            }
+            postickBinding.editTextTextPersonName.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    var sub = Subtarea(postickBinding.editTextTextPersonName.text.toString(),true)
+                    var array = item.postick!!.subtareas
+                    array!!.add(sub)
+                    marksRef.child(item.uid!!).child("subtareas").setValue(array)
+                    postickBinding.editTextTextPersonName.setText("")
+                    postickBinding.editTextTextPersonName.visibility = View.GONE
+                    true
+                }
+                false
+            }
+            if(item.postick!!.subtareas!!.isEmpty())
             {
                 postickBinding.viewLine.visibility = View.GONE
             }
+            postickBinding.postick = item.postick
         }
 
     }

@@ -1,8 +1,9 @@
 package com.jonathanmojica.todo_realtime.model
 
-data class Categoria(
-    val nombre:String? = "",
-    val color: Int? = -1,
+
+data class PostickData(
+    val uid: String? = "",
+    val postick: Postick? = Postick()
 )
 
 data class Subtarea(
@@ -14,7 +15,6 @@ data class Postick(
     val id: String? = "",
     val color: Int? = -1,
     val titulo:String? = "",
-    val categorias: List<Categoria>? = arrayListOf(),
-    val subtareas: List<Subtarea>? = arrayListOf()
+    var subtareas: ArrayList<Subtarea>? = arrayListOf()
 )
 

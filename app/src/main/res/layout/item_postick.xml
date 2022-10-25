@@ -27,11 +27,13 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
                 android:padding="10dp"
                 android:text="@{postick.titulo}"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imgAdd"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,30 +47,43 @@
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerCategory" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCategory"
-                android:layout_width="0dp"
-                android:layout_marginRight="40px"
-                android:layout_marginLeft="40px"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
-
-
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerSubTask"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewLine" />
+
+            <ImageView
+                android:id="@+id/imgAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Tarea"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerSubTask" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

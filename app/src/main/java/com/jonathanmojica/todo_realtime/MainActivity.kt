@@ -9,14 +9,12 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import com.jonathanmojica.todo_realtime.databinding.ActivityMainBinding
 import com.jonathanmojica.todo_realtime.model.Postick
@@ -87,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             UUID.randomUUID().toString(),
             Color.parseColor("#$color"),
             titulo,
-            arrayListOf(),
             arrayListOf()
         )
         marksRef.push().setValue(mark)
