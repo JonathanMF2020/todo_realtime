@@ -24,6 +24,21 @@ class PostickAdapter(var arrayList: ArrayList<PostickData> = arrayListOf(), var 
             adapter = SubtaskAdapter(item)
             postickBinding.recyclerSubTask.adapter = adapter
             postickBinding.recyclerSubTask.layoutManager = LinearLayoutManager(context)
+            postickBinding.txtTitulo.setOnClickListener{
+                postickBinding.editChangeName.visibility = View.VISIBLE
+                postickBinding.editChangeName.setText(item.postick!!.titulo)
+                postickBinding.txtTitulo.visibility = View.GONE
+            }
+            postickBinding.editChangeName.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    marksRef.child(item.uid!!).child("titulo").setValue(postickBinding.editChangeName.text.toString())
+                    item.postick!!.titulo = postickBinding.editChangeName.text.toString()
+                    postickBinding.txtTitulo.visibility = View.VISIBLE
+                    postickBinding.editChangeName.visibility = View.GONE
+                    true
+                }
+                false
+            }
             postickBinding.imgAdd.setOnClickListener{
                 postickBinding.editTextTextPersonName.visibility = View.VISIBLE
                 postickBinding.editTextTextPersonName.requestFocus()

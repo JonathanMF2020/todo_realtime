@@ -23,20 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:padding="10dp"
-                android:text="@{postick.titulo}"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/imgAdd"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <View
                 android:id="@+id/viewLine"
                 android:layout_width="match_parent"
@@ -46,8 +32,9 @@
                 android:layout_marginEnd="16dp"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerSubTask"
@@ -84,6 +71,39 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerSubTask" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/imgAdd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/editChangeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionDone"
+                    android:text="Name"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@{postick.titulo}"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    tools:visibility="visible" />
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

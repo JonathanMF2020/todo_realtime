@@ -14,7 +14,7 @@ data class Subtarea(
 data class Postick(
     val id: String? = "",
     val color: Int? = -1,
-    val titulo:String? = "",
+    var titulo:String? = "",
     var subtareas: ArrayList<Subtarea>? = arrayListOf()
 )
 

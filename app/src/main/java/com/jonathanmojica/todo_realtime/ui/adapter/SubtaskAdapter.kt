@@ -1,5 +1,6 @@
 package com.jonathanmojica.todo_realtime.ui.adapter
 
+import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +20,10 @@ class SubtaskAdapter(var arrayList: PostickData): RecyclerView.Adapter<SubtaskAd
         fun bind(item: Subtarea) {
             Log.d("Subtask","Creado")
             taskBinding.subtask = item
-
+            if(!item.activo!!)
+            {
+                taskBinding.textView2.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            }
         }
 
     }
@@ -34,6 +38,8 @@ class SubtaskAdapter(var arrayList: PostickData): RecyclerView.Adapter<SubtaskAd
         holder.bind(arrayList.postick!!.subtareas!![position])
         holder.taskBinding.checkBox.setOnCheckedChangeListener { _, isChecked ->
             marksRef.child(arrayList.uid!!).child("subtareas").child(position.toString()).child("activo").setValue(isChecked)
+
+
         }
 
     }
